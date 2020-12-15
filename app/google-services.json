@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "559599702408",
+    "project_id": "linddna-sep7",
+    "storage_bucket": "linddna-sep7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:559599702408:android:a6127b594ae95278b82a3d",
+        "android_client_info": {
+          "package_name": "com.e.linddnasep7"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "559599702408-puclia0koj5e3j1h9ushnm1a1eteskgj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7F9xU_CYmPKQoNOmotGlY_JneYboTYC0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "559599702408-puclia0koj5e3j1h9ushnm1a1eteskgj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

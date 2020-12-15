@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">LindDnaSEP7</string>
+    <string name="login">LOGIN</string>
+    <string name="dispensers">Dispensers</string>
+    <string name="battery">Battery</string>
+    <string name="gel">Gel</string>
+    <string name="home">Home</string>
+
+</resources>

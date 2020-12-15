@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/home"
+        android:title="@string/home"
+        android:icon="@drawable/ic_home"/>
+    <item
+        android:id="@+id/dispenser"
+        android:title="@string/dispensers"
+        android:icon="@drawable/ic_dispenser"/>
+
+
+    <item
+        android:id="@+id/battery"
+        android:title="@string/battery"
+        android:icon="@drawable/ic_battery"/>
+
+    <item
+        android:id="@+id/gel"
+        android:title="@string/gel"
+        android:icon="@drawable/ic_gel"/>
+
+</menu>
