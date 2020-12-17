@@ -3,23 +3,13 @@
 
 
     <item
-        android:id="@+id/home"
-        android:title="@string/home"
-        android:icon="@drawable/ic_home"/>
-    <item
-        android:id="@+id/dispenser"
-        android:title="@string/dispensers"
-        android:icon="@drawable/ic_dispenser"/>
-
-
+        android:id="@+id/gel"
+        android:title="Gel"
+        android:icon="@drawable/ic_gel"/>
     <item
         android:id="@+id/battery"
-        android:title="@string/battery"
+        android:title="Battery"
         android:icon="@drawable/ic_battery"/>
 
-    <item
-        android:id="@+id/gel"
-        android:title="@string/gel"
-        android:icon="@drawable/ic_gel"/>
 
 </menu>

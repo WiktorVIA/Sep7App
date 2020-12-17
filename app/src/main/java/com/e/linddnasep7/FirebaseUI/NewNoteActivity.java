@@ -54,6 +54,7 @@ public class NewNoteActivity extends AppCompatActivity {
     private void saveNote() {
         String title = editTextTitle.getText().toString();
         String description = editTextDescription.getText().toString();
+        int battery = 100;
         int priority = numberPickerPriority.getValue();
         if (title.trim().isEmpty() || description.trim().isEmpty()) {
             Toast.makeText(this, "Please insert a title and description", Toast.LENGTH_SHORT).show();
@@ -61,7 +62,7 @@ public class NewNoteActivity extends AppCompatActivity {
         }
         CollectionReference notebookRef = FirebaseFirestore.getInstance()
                 .collection("Notebook");
-        notebookRef.add(new Dispenser(title, description, priority));
+        notebookRef.add(new Dispenser(title, description, priority, battery));
         Toast.makeText(this, "Note added", Toast.LENGTH_SHORT).show();
         finish();
     }

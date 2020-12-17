@@ -9,17 +9,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+
 import android.widget.Toast;
 
-import com.e.linddnasep7.Battery.BatteryActivity;
+
 import com.e.linddnasep7.Dispensers.DispenserActivity;
 import com.e.linddnasep7.FirebaseUI.Dispenser;
 import com.e.linddnasep7.FirebaseUI.DispenserAdapter;
 import com.e.linddnasep7.FirebaseUI.NewNoteActivity;
-import com.e.linddnasep7.Gel.GelActivity;
+
+import com.e.linddnasep7.LoginScreen.LoginActivity;
 import com.e.linddnasep7.R;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -37,7 +40,6 @@ public class MainActivity extends AppCompatActivity{
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference notebookRef = db.collection("Notebook");
     private DispenserAdapter adapter;
-    public DocumentSnapshot documentSnapshot;
 
 
 
@@ -54,37 +56,25 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuitem) {
                 switch (menuitem.getItemId()) {
-                    case R.id.home:
+                    case R.id.gel:
                         return true;
-                    case R.id.dispenser:
+                    case R.id.battery:
                         startActivity(new Intent(getApplicationContext()
                                 , DispenserActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
-                    case R.id.battery:
-                        startActivity(new Intent(getApplicationContext()
-                                , BatteryActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.gel:
-                        startActivity(new Intent(getApplicationContext()
-                                , GelActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
+
                 }
                 return false;
             }
         });
 
-        //Button to charge and refill
 
 
-    //Adding listener like the next one makes error
 
 
-        Button batteryButton = findViewById(R.id.battery_button);
 
-
+        //Creating the floating button for adding new dispensers
         FloatingActionButton buttonAddNote = findViewById(R.id.button_add_note);
         buttonAddNote.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +82,8 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(new Intent(MainActivity.this, NewNoteActivity.class));
             }
         });
+
+        //populating the Recycle view with dispensers
         setUpRecyclerView();
 
 
@@ -101,12 +93,12 @@ public class MainActivity extends AppCompatActivity{
 
 
 
-   // private void refillButtonClicked(){ }
 
 
 
 
-    //   ^^ DO NOT FUCKING CHANGE PRIORITY TO GEL ^^
+
+
     private void setUpRecyclerView() {
         Query query = notebookRef.orderBy("priority", Query.Direction.ASCENDING);
 
@@ -141,8 +133,6 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
 
-                setDocumentSnapshot(documentSnapshot);
-                Dispenser dispenser = documentSnapshot.toObject(Dispenser.class);
                 String id = documentSnapshot.getId();
                 String path = documentSnapshot.getReference().getPath();
                 Toast.makeText(MainActivity.this, "Position: " + position + " ID: " + id, Toast.LENGTH_LONG).show();
@@ -155,12 +145,26 @@ public class MainActivity extends AppCompatActivity{
     }
 
 
-    public DocumentSnapshot getDocumentSnapshot(){
-        return documentSnapshot;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
     }
 
-    public void setDocumentSnapshot(DocumentSnapshot documentSnapshot){
-        this.documentSnapshot=documentSnapshot;
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.logout:
+                startActivity(new Intent(getApplicationContext()
+                        , LoginActivity.class));
+                overridePendingTransition(0, 0);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+
     }
 
     // when the app goes into the foreground the app will start listening

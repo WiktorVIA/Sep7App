@@ -1,27 +1,29 @@
 package com.e.linddnasep7.FirebaseUI;
 
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.e.linddnasep7.MainScreen.MainActivity;
+
 import com.e.linddnasep7.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.common.internal.Constants;
+
 import com.google.firebase.firestore.DocumentSnapshot;
 
 public class DispenserAdapter extends FirestoreRecyclerAdapter<Dispenser, DispenserAdapter.DispenserHolder> {
 
     private OnItemClickListener  listener;
     private static final String TAG = "MainActivity";
+    private String viewClicked;
+
     public DispenserAdapter(@NonNull FirestoreRecyclerOptions<Dispenser> options) {
         super(options);
     }
@@ -31,17 +33,7 @@ public class DispenserAdapter extends FirestoreRecyclerAdapter<Dispenser, Dispen
         holder.textViewTitle.setText(model.getTitle());
         holder.textViewDescription.setText(model.getDescription());
         holder.textViewGel.setText(String.valueOf(model.getGel()));
-
-
-        // does not work
-        holder.batteryButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-
-        });
-
+        holder.textViewBattery.setText(String.valueOf(model.getBattery()));
 
 
     }
@@ -63,10 +55,7 @@ public class DispenserAdapter extends FirestoreRecyclerAdapter<Dispenser, Dispen
         TextView textViewTitle;
         TextView textViewDescription;
         TextView textViewGel;
-
-        //does not work
-        Button batteryButton;
-
+        TextView textViewBattery;
 
 
         public DispenserHolder(@NonNull View itemView) {
@@ -74,9 +63,7 @@ public class DispenserAdapter extends FirestoreRecyclerAdapter<Dispenser, Dispen
             textViewTitle = itemView.findViewById(R.id.text_view_title);
             textViewDescription = itemView.findViewById(R.id.text_view_description);
             textViewGel = itemView.findViewById(R.id.text_view_gel);
-
-            //does not work
-            batteryButton = itemView.findViewById(R.id.battery_button);
+            textViewBattery =  itemView.findViewById(R.id.text_view_battery);
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
